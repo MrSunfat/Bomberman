@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.image.BufferedImage;
@@ -12,8 +13,8 @@ import java.awt.image.BufferedImage;
 public abstract class Entity {
     public boolean up, down, right, left;
     public boolean moving;
-    public static Image[] animUp, animDown, animLeft, animRight, anim, horizontal, vertical;
     public int frame = 0, interval, indexAnim = 0;
+    public boolean isLive = true;
 
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected int x = 0;
@@ -55,6 +56,20 @@ public abstract class Entity {
     public void setImg(Image img) {
         this.img = img;
     }
+
+    public boolean isExplode(int posX, int posY) {
+        for (int i = 0; i < BombermanGame.bombExplosions.size(); i++) {
+            if(BombermanGame.bombExplosions.get(i).getX() / 32 == posX
+            && BombermanGame.bombExplosions.get(i).getY() / 32 == posY) {
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+
+
 
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
