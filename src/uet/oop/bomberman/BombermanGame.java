@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.BombHandle.Bomb;
 
@@ -78,6 +79,11 @@ public class BombermanGame extends Application {
 
         //by setting this property to true, the audio will be played
         mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
         mediaPlayer.setVolume(0.1);
         stage.setTitle("Playing Audio");
         stage.show();
