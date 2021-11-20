@@ -8,6 +8,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.BombHandle.Bomb;
@@ -17,6 +19,7 @@ import uet.oop.bomberman.graphics.Levels;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.entities.Bomber;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +68,20 @@ public class BombermanGame extends Application {
 
     @Override
     public void start(Stage stage) {
+        String path = "res/media/nhacnen.mp3";
+
+        //Instantiating Media class
+        Media media = new Media(new File(path).toURI().toString());
+
+        //Instantiating MediaPlayer class
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        //by setting this property to true, the audio will be played
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setVolume(0.1);
+        stage.setTitle("Playing Audio");
+        stage.show();
+
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
 
@@ -97,6 +114,7 @@ public class BombermanGame extends Application {
         createMap();
 
         scene.setOnKeyPressed(keyEvent -> {
+
             if(keyEvent.getCode().equals(KeyCode.UP) || keyEvent.getCode().equals(KeyCode.W)) {
                 bomberman.up = true;
             }
@@ -111,6 +129,7 @@ public class BombermanGame extends Application {
             }
             if(keyEvent.getCode().equals(KeyCode.SPACE)) {
                 if(Bomb.bombNum != 0) {
+                    soundEffect("Bomb.wav");
                     int x,y;
                     x = (bomberman.getX() + (Sprite.SCALED_SIZE) / 2 ) / Sprite.SCALED_SIZE;
                     y = (bomberman.getY() + (Sprite.SCALED_SIZE) / 2 ) / Sprite.SCALED_SIZE;
@@ -225,6 +244,10 @@ public class BombermanGame extends Application {
                }
            }
 
+//           if (mobs.isEmpty()) {
+//               soundEffect("chua biet 2.wav");
+//           }
+
 //           bombs.forEach(Entity::update);
     }
 
@@ -237,5 +260,19 @@ public class BombermanGame extends Application {
         bombExplosions.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
 
+    }
+
+    public static void soundEffect(String nameSong) {
+        String path = "res/media/" + nameSong;
+
+        //Instantiating Media class
+        Media media = new Media(new File(path).toURI().toString());
+
+        //Instantiating MediaPlayer class
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        //by setting this property to true, the audio will be played
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setVolume(0.2);
     }
 }

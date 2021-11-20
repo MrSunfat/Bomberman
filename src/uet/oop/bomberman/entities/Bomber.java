@@ -69,6 +69,7 @@ public class Bomber extends Entity {
             moving = false;
 //            isPlayerLive = true;
             if(itemIndexReceived() != -1) {
+                BombermanGame.soundEffect("Item.wav");
                 int itemX = BombermanGame.getItems().get(itemIndexReceived()).getX() / 32;
                 int itemY = BombermanGame.getItems().get(itemIndexReceived()).getY() / 32;
                 BombermanGame.getStillObjects().set(31*itemY + itemX, new Grass(itemX, itemY, Sprite.grass.getFxImage()));
@@ -125,6 +126,7 @@ public class Bomber extends Entity {
                 img = downImagePlayer()[1];
             }
         } else {
+            BombermanGame.soundEffect("chua biet.wav");
 //            isPlayerLive = false;
             img = Sprite.player_dead1.getFxImage();
 //            if(playerLifeNumb != 0) {

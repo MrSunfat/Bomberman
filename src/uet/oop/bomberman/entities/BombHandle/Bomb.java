@@ -196,6 +196,7 @@ public class Bomb extends Entity {
         }
 
         if (exploded) {
+            BombermanGame.soundEffect("Bomb_exploded.wav");
             bombExplosion.frame++;
 
             if (bombExplosion.frame == 5) {
