@@ -134,6 +134,7 @@ public class Balloom extends Entity{
                 img = downImageBalloom()[1];
             }
         } else {
+            BombermanGame.soundEffect("chua biet.wav");
             img = Sprite.balloom_dead.getFxImage();
             frameBalloom++;
             if (frameBalloom > 40) {
