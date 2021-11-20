@@ -65,7 +65,6 @@ public class Oneal extends Entity {
 
             if (isLive) {
                 speed = (int) (Math.random()*2 + 1);
-                System.out.println(speed);
                 moving = false;
                 if (timeToRandom == 0) {
                     int rand = (int) (Math.random() * 100);
@@ -137,7 +136,7 @@ public class Oneal extends Entity {
                 img = Sprite.oneal_dead.getFxImage();
                 frameOneal++;
                 if (frameOneal > 40) {
-                    BombermanGame.getEntities().remove(this);
+                    BombermanGame.getMobs().remove(this);
                 }
             }
         }

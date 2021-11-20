@@ -137,7 +137,7 @@ public class Balloom extends Entity{
             img = Sprite.balloom_dead.getFxImage();
             frameBalloom++;
             if (frameBalloom > 40) {
-                BombermanGame.getEntities().remove(this);
+                BombermanGame.getMobs().remove(this);
             }
         }
     }
